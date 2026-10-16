@@ -6,7 +6,7 @@ The assistant supports English and Arabic, retrieves relevant internal documents
 
 > **Project:** AI & Machine Learning Boot Camp Graduation Project  
 > **Organization:** Atlas Industries (fictional company)  
-> **Repository:** [Mariam-abd-elhady/atlas-enterprise-assistant](https://github.com/Mariam-abd-elhady/atlas-enterprise-assistant)
+> **Repository:** [arwa-bOo/atlas-enterprise-assistant](https://github.com/arwa-bOo/atlas-enterprise-assistant)
 
 ## Demo
 
