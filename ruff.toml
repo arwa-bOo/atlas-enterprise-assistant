@@ -1,0 +1,5 @@
+[lint]
+# BLE001: broad excepts are deliberate. LLM, network and retrieval calls can
+# fail in many ways, and the app must show a friendly message or fall back
+# instead of crashing (NFR-D3, NFR-D4).
+ignore = ["BLE001"]

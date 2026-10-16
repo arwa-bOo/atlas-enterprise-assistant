@@ -1,0 +1,616 @@
+{
+  "summary": {
+    "cases": 10,
+    "errors": 0,
+    "routing_accuracy": 1.0,
+    "citation_recall": 0.95,
+    "citation_full_match_rate": 0.9,
+    "metrics": {
+      "faithfulness": {
+        "average_score": 0.931,
+        "pass_rate": 1.0,
+        "evaluated": 10,
+        "passed": 10,
+        "failed": 0
+      },
+      "answer_relevancy": {
+        "average_score": 0.929,
+        "pass_rate": 0.9,
+        "evaluated": 10,
+        "passed": 9,
+        "failed": 1
+      },
+      "hallucination": {
+        "average_score": 1.0,
+        "pass_rate": 1.0,
+        "evaluated": 10,
+        "passed": 10,
+        "failed": 0
+      },
+      "contextual_precision": {
+        "average_score": 0.822,
+        "pass_rate": 0.7,
+        "evaluated": 10,
+        "passed": 7,
+        "failed": 3
+      },
+      "contextual_recall": {
+        "average_score": 0.817,
+        "pass_rate": 0.8,
+        "evaluated": 10,
+        "passed": 8,
+        "failed": 2
+      }
+    },
+    "by_language": {
+      "ar": {
+        "cases": 3,
+        "routing_accuracy": 1.0,
+        "citation_recall": 1.0
+      },
+      "en": {
+        "cases": 7,
+        "routing_accuracy": 1.0,
+        "citation_recall": 0.929
+      }
+    },
+    "routing_passed": 10,
+    "routing_failed": 0
+  },
+  "results": [
+    {
+      "id": "EVAL-001",
+      "language": "en",
+      "question": "How many vacation days does a new hire get in their first year at Atlas Industries?",
+      "expected_domain": "hr",
+      "predicted_domain": "hr",
+      "routing_correct": true,
+      "answer": "A new hire at Atlas Industries is entitled to 15 days of annual vacation in their first year.",
+      "llm_error": false,
+      "expected_output": "New hires at Atlas Industries are entitled to 15 paid vacation days in year 1, accruing at 1.25 days per completed month of service starting the month after their 90-day probation period ends.",
+      "tools_used": [],
+      "citations": {
+        "expected": [
+          "HR-001-vacation-policy.md"
+        ],
+        "returned": [
+          "HR-001-vacation-policy.md",
+          "HR-003-onboarding-handbook.docx",
+          "HR-004-code-of-conduct.md",
+          "HR-006-leave-types-guide.docx"
+        ],
+        "missing": [],
+        "recall": 1.0,
+        "full_match": true
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the actual output is perfectly aligned with the retrieval context, demonstrating excellent accuracy and faithfulness!"
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response is perfectly accurate and directly addresses the user's question with no irrelevant information included. Great job!"
+        },
+        "hallucination": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the actual output is fully supported by the provided context with no contradictions found."
+        },
+        "contextual_precision": {
+          "score": 0.75,
+          "passed": true,
+          "reason": "The score is 0.75 because while the first node correctly identifies that a 'New hire (year 1)' is entitled to '15 days', the fourth node, which also confirms '15 days for new hires', is ranked behind two irrelevant nodes that discuss 'onboarding process' and 'public holidays', preventing a perfect score."
+        },
+        "contextual_recall": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "The score is 0.00 because node 1 in retrieval context only mentions the total vacation days, failing to provide the specific accrual rate of 1.25 days per month or the timing details regarding the 90-day probation period mentioned in the expected output."
+        }
+      },
+      "input": "How many vacation days does a new hire get in their first year at Atlas Industries?",
+      "actual_output": "A new hire at Atlas Industries is entitled to 15 days of annual vacation in their first year."
+    },
+    {
+      "id": "EVAL-002",
+      "language": "ar",
+      "question": "ما هو عدد أيام الإجازة المرضية المدفوعة سنويًا، ومتى يلزم تقديم شهادة طبية؟",
+      "expected_domain": "hr",
+      "predicted_domain": "hr",
+      "routing_correct": true,
+      "answer": "يبلغ عدد أيام الإجازة المرضية المدفوعة سنويًا للموظف بدوام كامل **14 يومًا** خلال السنة الميلادية.\n\nأما بخصوص تقديم الشهادة الطبية، فتكون الضوابط كالتالي:\n*   **الإجازات لمدة يوم أو يومين:** لا تتطلب شهادة طبية، ويكفي إخطار المدير.\n*   **الإجازات لمدة 3 أيام فأكثر:** تتطلب شهادة طبية معتمدة من طبيب مرخص أو مستشفى معتمد، ويجب تقديمها خلال 5 أيام عمل من العودة.\n*   **ملاحظة:** الشهادات المكتوبة بغير اللغة العربية أو الإنجليزية تتطلب ترجمة معتمدة.\n\nالمصادر:\n- HR-007-سياسة-الإجازات-المرضية.md",
+      "llm_error": false,
+      "expected_output": "يحق لكل موظف بدوام كامل 14 يوم إجازة مرضية مدفوعة الأجر خلال السنة الميلادية. الإجازات لمدة يوم أو يومين لا تتطلب شهادة طبية، أما الإجازات لمدة 3 أيام فأكثر فتتطلب شهادة طبية معتمدة من طبيب مرخص يتم تقديمها خلال 5 أيام عمل من العودة.",
+      "tools_used": [],
+      "citations": {
+        "expected": [
+          "HR-007-سياسة-الإجازات-المرضية.md"
+        ],
+        "returned": [
+          "HR-007-سياسة-الإجازات-المرضية.md",
+          "HR-008-دليل-التوظيف.pdf",
+          "HR-009-ساعات-العمل-المرنة.docx"
+        ],
+        "missing": [],
+        "recall": 1.0,
+        "full_match": true
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.833,
+          "passed": true,
+          "reason": "The score is 0.83 because the actual output incorrectly identifies the policy number as HR-007-سياسة-الإجازات-المرضية.md instead of the correct HR-SICK-007 specified in the context."
+        },
+        "answer_relevancy": {
+          "score": 0.833,
+          "passed": true,
+          "reason": "The score is 0.83 because the response accurately addresses the inquiry regarding sick leave duration and medical certificate requirements, but it includes an unnecessary reference to the source document which is irrelevant to the user's question."
+        },
+        "hallucination": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the actual output is fully supported by the provided context with no contradictions found."
+        },
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all relevant nodes are ranked at the top, perfectly addressing the inquiry about sick leave duration and medical certificate requirements before any irrelevant nodes appear."
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all sentences in the expected output are perfectly supported by node(s) in retrieval context 1 and 2, demonstrating excellent alignment and accuracy!"
+        }
+      },
+      "input": "ما هو عدد أيام الإجازة المرضية المدفوعة سنويًا، ومتى يلزم تقديم شهادة طبية؟",
+      "actual_output": "يبلغ عدد أيام الإجازة المرضية المدفوعة سنويًا للموظف بدوام كامل **14 يومًا** خلال السنة الميلادية.\n\nأما بخصوص تقديم الشهادة الطبية، فتكون الضوابط كالتالي:\n*   **الإجازات لمدة يوم أو يومين:** لا تتطلب شهادة طبية، ويكفي إخطار المدير.\n*   **الإجازات لمدة 3 أيام فأكثر:** تتطلب شهادة طبية معتمدة من طبيب مرخص أو مستشفى معتمد، ويجب تقديمها خلال 5 أيام عمل من العودة.\n*   **ملاحظة:** الشهادات المكتوبة بغير اللغة العربية أو الإنجليزية تتطلب ترجمة معتمدة.\n\nالمصادر:\n- HR-007-سياسة-الإجازات-المرضية.md"
+    },
+    {
+      "id": "EVAL-003",
+      "language": "en",
+      "question": "I'm a new hire still on probation. Can I work from home 2 days a week?",
+      "expected_domain": "hr",
+      "predicted_domain": "hr",
+      "routing_correct": true,
+      "answer": "No, as a new hire on probation, you are generally not eligible to work remotely. According to the Remote Work Policy (HR-RMT-002) and the Onboarding Handbook (HR-003), remote work is not available during the 90-day probation period.\n\nThe only exception is in documented exceptional circumstances (such as medical reasons or relocation in progress), which must be approved by your department head.",
+      "llm_error": false,
+      "expected_output": "Remote work is not available during the 90-day probation period at Atlas Industries, except in documented exceptional circumstances (such as medical reasons or relocation in progress) that have been approved by the department head. After probation, employees may work remotely up to 3 days per week with manager approval.",
+      "tools_used": [],
+      "citations": {
+        "expected": [
+          "HR-002-remote-work-policy.pdf",
+          "HR-003-onboarding-handbook.docx"
+        ],
+        "returned": [
+          "HR-001-vacation-policy.md",
+          "HR-002-remote-work-policy.pdf",
+          "HR-003-onboarding-handbook.docx",
+          "HR-006-leave-types-guide.docx"
+        ],
+        "missing": [],
+        "recall": 1.0,
+        "full_match": true
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the actual output is perfectly aligned with the retrieval context, demonstrating excellent accuracy and faithfulness!"
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response is perfectly relevant, accurate, and directly addresses the user's inquiry about remote work policies during their probation period."
+        },
+        "hallucination": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the actual output is fully supported by the provided context, with no contradictions or unsupported claims regarding the remote work policy."
+        },
+        "contextual_precision": {
+          "score": 0.806,
+          "passed": true,
+          "reason": "The score is 0.81 because while the first node correctly identifies that 'New hires may not work remotely during probation', the second node is an irrelevant document about 'vacation accrual' that should have been ranked lower than the third and fourth nodes, which contain pertinent information regarding 'remote work' eligibility and arrangements."
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all information regarding remote work policies during and after the probation period is perfectly captured across nodes 1, 3, and 4 in the retrieval context. Great job!"
+        }
+      },
+      "input": "I'm a new hire still on probation. Can I work from home 2 days a week?",
+      "actual_output": "No, as a new hire on probation, you are generally not eligible to work remotely. According to the Remote Work Policy (HR-RMT-002) and the Onboarding Handbook (HR-003), remote work is not available during the 90-day probation period.\n\nThe only exception is in documented exceptional circumstances (such as medical reasons or relocation in progress), which must be approved by your department head."
+    },
+    {
+      "id": "EVAL-004",
+      "language": "en",
+      "question": "What server and port do I use to connect to the company VPN, and what client should be installed?",
+      "expected_domain": "it",
+      "predicted_domain": "it",
+      "routing_correct": true,
+      "answer": "To connect to the company VPN, you should use the **Cisco AnyConnect Secure Mobility Client**.\n\nThe connection settings are as follows:\n*   **Server:** `vpn.atlas-industries.com`\n*   **Port:** 443 (TCP)",
+      "llm_error": false,
+      "expected_output": "Atlas Industries uses Cisco AnyConnect Secure Mobility Client. Connect to the server vpn.atlas-industries.com on TCP port 443 using SSL, authenticated with your Atlas SSO credentials plus MFA via Microsoft Authenticator.",
+      "tools_used": [],
+      "citations": {
+        "expected": [
+          "IT-001-vpn-setup-guide.md"
+        ],
+        "returned": [
+          "IT-001-vpn-setup-guide.md",
+          "IT-003-laptop-provisioning.docx",
+          "IT-004-software-request-process.md",
+          "IT-006-acceptable-use-policy.docx"
+        ],
+        "missing": [],
+        "recall": 1.0,
+        "full_match": true
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the actual output is perfectly aligned with the retrieval context, demonstrating excellent accuracy and faithfulness!"
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response directly and accurately addresses all parts of the user's query regarding the VPN connection details and the required client."
+        },
+        "hallucination": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the actual output accurately reflects all technical details and policy information provided in the context without any contradictions."
+        },
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all relevant nodes are perfectly ranked at the top, with the first node identifying the required client and the second node providing the specific server and port details, while all irrelevant nodes are correctly placed at the bottom."
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all information in the expected output is perfectly supported by node 1 and node 2 in the retrieval context. Great job!"
+        }
+      },
+      "input": "What server and port do I use to connect to the company VPN, and what client should be installed?",
+      "actual_output": "To connect to the company VPN, you should use the **Cisco AnyConnect Secure Mobility Client**.\n\nThe connection settings are as follows:\n*   **Server:** `vpn.atlas-industries.com`\n*   **Port:** 443 (TCP)"
+    },
+    {
+      "id": "EVAL-005",
+      "language": "en",
+      "question": "I forgot my password and need to reset it. What's the URL and how long is the cooldown between resets?",
+      "expected_domain": "it",
+      "predicted_domain": "it",
+      "routing_correct": true,
+      "answer": "To reset your password, you can use the self-service portal at: https://portal.atlas-industries.com/reset\n\nThe self-service flow has a 24-hour cooldown, meaning you cannot reset your password twice within the same day.",
+      "llm_error": false,
+      "expected_output": "Reset your password at portal.atlas-industries.com/reset. Enter your work email, approve the MFA push on Microsoft Authenticator, then set a new password meeting the 12-character policy. There is a 24-hour cooldown — you cannot reset twice within the same day via self-service. If you need a second reset within 24 hours, call the IT Service Desk on extension 3500.",
+      "tools_used": [],
+      "citations": {
+        "expected": [
+          "IT-002-password-reset-sop.pdf"
+        ],
+        "returned": [
+          "IT-001-vpn-setup-guide.md",
+          "IT-002-password-reset-sop.pdf",
+          "IT-005-incident-response.pdf",
+          "IT-010-mfa-setup-bilingual.md"
+        ],
+        "missing": [],
+        "recall": 1.0,
+        "full_match": true
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the actual output is perfectly aligned with the retrieval context, demonstrating excellent accuracy and faithfulness!"
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response is perfectly accurate and directly addresses both parts of your inquiry with helpful, relevant information. Great job!"
+        },
+        "hallucination": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the actual output is fully consistent with all provided context regarding VPN, password reset, MFA, and incident response procedures, with no contradictions identified."
+        },
+        "contextual_precision": {
+          "score": 0.583,
+          "passed": false,
+          "reason": "The score is 0.58 because while the second and third nodes correctly provide the cooldown policy and reset URL, the first node is an irrelevant document regarding VPN SLAs that was incorrectly ranked above them, negatively impacting the precision."
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all instructions, including the URL, password policy, cooldown period, and escalation contact, are perfectly supported by nodes 2 and 3 in the retrieval context. Great job!"
+        }
+      },
+      "input": "I forgot my password and need to reset it. What's the URL and how long is the cooldown between resets?",
+      "actual_output": "To reset your password, you can use the self-service portal at: https://portal.atlas-industries.com/reset\n\nThe self-service flow has a 24-hour cooldown, meaning you cannot reset your password twice within the same day."
+    },
+    {
+      "id": "EVAL-006",
+      "language": "ar",
+      "question": "ما هو التطبيق المعتمد للمصادقة الثنائية في الشركة؟ وهل يمكن استخدام Google Authenticator؟",
+      "expected_domain": "it",
+      "predicted_domain": "it",
+      "routing_correct": true,
+      "answer": "التطبيق المعتمد للمصادقة الثنائية (MFA) في شركة أطلس الصناعية هو **Microsoft Authenticator** فقط.\n\nبناءً على سياسة الشركة، **لا يمكن** استخدام تطبيقات الطرف الثالث مثل Google Authenticator أو Authy لحسابات الإنتاج، وذلك بسبب متطلبات الاسترداد والسياسة المتبعة.\n\n**المصادر:**\n* IT-010-mfa-setup-bilingual.md",
+      "llm_error": false,
+      "expected_output": "تدعم شركة أطلس الصناعية تطبيق Microsoft Authenticator فقط للمصادقة الثنائية. التطبيقات الأخرى مثل Google Authenticator و Authy غير مدعومة لحسابات الإنتاج بسبب متطلبات الاسترداد والسياسة.",
+      "tools_used": [],
+      "citations": {
+        "expected": [
+          "IT-010-mfa-setup-bilingual.md"
+        ],
+        "returned": [
+          "IT-007-دليل-البريد-الإلكتروني.md",
+          "IT-008-مشاكل-الشبكة.pdf",
+          "IT-009-طلب-البرامج.docx",
+          "IT-010-mfa-setup-bilingual.md"
+        ],
+        "missing": [],
+        "recall": 1.0,
+        "full_match": true
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.75,
+          "passed": true,
+          "reason": "The score is 0.75 because the actual output incorrectly identifies the document ID as IT-010-mfa-setup-bilingual.md instead of the correct ID, IT-MFA-010, as specified in the retrieval context."
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response is perfectly relevant, accurate, and directly addresses both parts of your inquiry with clarity. Great job!"
+        },
+        "hallucination": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the actual output is fully supported by the provided context, accurately reflecting the MFA requirements and the exclusive support for Microsoft Authenticator."
+        },
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the first node perfectly identifies the supported application and explicitly clarifies that other options like Google Authenticator are not supported, ensuring the most relevant information is ranked at the very top."
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all information in the expected output is perfectly supported by the 1st node in the retrieval context, ensuring complete accuracy!"
+        }
+      },
+      "input": "ما هو التطبيق المعتمد للمصادقة الثنائية في الشركة؟ وهل يمكن استخدام Google Authenticator؟",
+      "actual_output": "التطبيق المعتمد للمصادقة الثنائية (MFA) في شركة أطلس الصناعية هو **Microsoft Authenticator** فقط.\n\nبناءً على سياسة الشركة، **لا يمكن** استخدام تطبيقات الطرف الثالث مثل Google Authenticator أو Authy لحسابات الإنتاج، وذلك بسبب متطلبات الاسترداد والسياسة المتبعة.\n\n**المصادر:**\n* IT-010-mfa-setup-bilingual.md"
+    },
+    {
+      "id": "EVAL-007",
+      "language": "en",
+      "question": "I traveled domestically for a client meeting. I paid for a hotel and a taxi from the airport. What's the cap on each, and how many days do I have to submit the claim?",
+      "expected_domain": "finance",
+      "predicted_domain": "finance",
+      "routing_correct": true,
+      "answer": "Based on the provided documents, here are the details regarding your expenses and submission timeline:\n\n*   **Hotel and Taxi Caps:** The provided documents do not specify monetary caps for hotel or taxi expenses. However, they do note that for taxi/ride-hailing, you must provide an app receipt that includes the date, distance, and fare. For hotels, you must provide a folio that includes the name, dates, daily rate, and total.\n*   **Submission Window:** You must submit your expense claim within **30 days** of the trip end date. Claims submitted between 31 and 60 days late may be approved with written justification from your department head, but claims older than 60 days are not reimbursable.\n\n**Sources:**\n*   FIN-001-travel-reimbursement-policy.md\n*   FIN-002-expense-claim-sop.pdf",
+      "llm_error": false,
+      "expected_output": "For domestic travel within Egypt, the hotel cap is 1,500 EGP per night (room plus tax), and taxis to or from the airport are reimbursable up to 800 EGP per leg with an original receipt. App receipts from Uber or Careem are accepted in lieu of paper receipts. You have 30 days from the trip end date to submit the expense claim — claims older than 60 days are not eligible.",
+      "tools_used": [],
+      "citations": {
+        "expected": [
+          "FIN-001-travel-reimbursement-policy.md",
+          "FIN-002-expense-claim-sop.pdf"
+        ],
+        "returned": [
+          "FIN-001-travel-reimbursement-policy.md",
+          "FIN-002-expense-claim-sop.pdf",
+          "FIN-004-per-diem-rates.md"
+        ],
+        "missing": [],
+        "recall": 1.0,
+        "full_match": true
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.857,
+          "passed": true,
+          "reason": "The score is 0.86 because the actual output incorrectly claims that late submissions between 31 and 60 days can be approved with written justification, a provision that is not supported by the provided context."
+        },
+        "answer_relevancy": {
+          "score": 0.571,
+          "passed": false,
+          "reason": "The score is 0.57 because while the response addresses the submission deadline, it includes unnecessary details regarding documentation requirements for hotel and taxi expenses that were not requested."
+        },
+        "hallucination": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the actual output is fully consistent with the provided context and contains no contradictions."
+        },
+        "contextual_precision": {
+          "score": 0.5,
+          "passed": false,
+          "reason": "The score is 0.50 because the only relevant node, which contains the submission deadline, is ranked second. The first node is irrelevant as it focuses on 'per diem meals and communication charges', and its placement above the relevant information negatively impacts the precision score."
+        },
+        "contextual_recall": {
+          "score": 0.667,
+          "passed": false,
+          "reason": "The score is 0.67 because while the 2nd and 3rd nodes in the retrieval context correctly confirm the expense submission deadlines and the validity of ride-hailing app receipts, the retrieval context lacks any information regarding the specific 1,500 EGP hotel cap or the 800 EGP taxi reimbursement limit mentioned in the expected output."
+        }
+      },
+      "input": "I traveled domestically for a client meeting. I paid for a hotel and a taxi from the airport. What's the cap on each, and how many days do I have to submit the claim?",
+      "actual_output": "Based on the provided documents, here are the details regarding your expenses and submission timeline:\n\n*   **Hotel and Taxi Caps:** The provided documents do not specify monetary caps for hotel or taxi expenses. However, they do note that for taxi/ride-hailing, you must provide an app receipt that includes the date, distance, and fare. For hotels, you must provide a folio that includes the name, dates, daily rate, and total.\n*   **Submission Window:** You must submit your expense claim within **30 days** of the trip end date. Claims submitted between 31 and 60 days late may be approved with written justification from your department head, but claims older than 60 days are not reimbursable.\n\n**Sources:**\n*   FIN-001-travel-reimbursement-policy.md\n*   FIN-002-expense-claim-sop.pdf"
+    },
+    {
+      "id": "EVAL-008",
+      "language": "en",
+      "question": "What's the per diem rate for international travel, and does it cover client dinners?",
+      "expected_domain": "finance",
+      "predicted_domain": "finance",
+      "routing_correct": true,
+      "answer": "The per diem rate for international travel is 500 EGP per day.\n\nThe per diem does **not** cover client dinners; client meals are covered separately under the Client Dining policy (FIN-CLI-009). Additionally, if a client dinner is paid for by Atlas under that policy, your per diem for that day is automatically reduced by 50%.",
+      "llm_error": false,
+      "expected_output": "The international per diem is 75 USD per day for most destinations (110 USD for Tier 1 cities like London, Geneva, Tokyo, Singapore, and New York). It covers personal meals, tips, water and snacks, and incidental expenses. It does not cover client meals — those are covered separately under FIN-CLI-009. If a client meal is paid for, the per diem for that day is reduced (30% for breakfast, 40% for lunch, 50% for dinner).",
+      "tools_used": [],
+      "citations": {
+        "expected": [
+          "FIN-004-per-diem-rates.md",
+          "FIN-007-سياسة-السفر-الدولي.md"
+        ],
+        "returned": [
+          "FIN-001-travel-reimbursement-policy.md",
+          "FIN-002-expense-claim-sop.pdf",
+          "FIN-004-per-diem-rates.md",
+          "FIN-005-corporate-card-policy.pdf"
+        ],
+        "missing": [
+          "FIN-007-سياسة-السفر-الدولي.md"
+        ],
+        "recall": 0.5,
+        "full_match": false
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the actual output is perfectly aligned with the retrieval context, demonstrating excellent accuracy and faithfulness!"
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response is perfectly accurate and directly addresses both parts of your question with helpful clarity!"
+        },
+        "hallucination": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the actual output accurately reflects all per diem rates, client meal policies, and reduction rules as specified in the provided context without any contradictions."
+        },
+        "contextual_precision": {
+          "score": 0.583,
+          "passed": false,
+          "reason": "The score is 0.58 because the first node is irrelevant as it 'discusses domestic per diem rates' instead of international ones, pushing relevant information to the second and third nodes. While the second and third nodes correctly identify that the per diem does 'not' cover 'Client meals' and explain the '50% if a client dinner occurred' reduction, the presence of an irrelevant node at rank 1 significantly lowers the precision score."
+        },
+        "contextual_recall": {
+          "score": 0.75,
+          "passed": true,
+          "reason": "The score is 0.75 because while nodes 2 and 3 in the retrieval context accurately detail the per diem coverage, exclusions, and reduction percentages, the first sentence regarding the specific 75 USD and 110 USD rates is not supported by the provided nodes, which instead cite a rate of 500 EGP."
+        }
+      },
+      "input": "What's the per diem rate for international travel, and does it cover client dinners?",
+      "actual_output": "The per diem rate for international travel is 500 EGP per day.\n\nThe per diem does **not** cover client dinners; client meals are covered separately under the Client Dining policy (FIN-CLI-009). Additionally, if a client dinner is paid for by Atlas under that policy, your per diem for that day is automatically reduced by 50%."
+    },
+    {
+      "id": "EVAL-009",
+      "language": "ar",
+      "question": "كم الحد الأقصى لتكلفة عشاء العملاء لكل شخص، ومتى أحتاج موافقة مسبقة؟",
+      "expected_domain": "finance",
+      "predicted_domain": "finance",
+      "routing_correct": true,
+      "answer": "الحد الأقصى لتكلفة عشاء العملاء هو **2,000 جنيه مصري لكل شخص** (يشمل الطعام، المشروبات غير الكحولية، الضريبة، والإكرامية).\n\nأما بخصوص **الموافقة المسبقة**، فهي مطلوبة بناءً على إجمالي قيمة الفاتورة كالتالي:\n\n*   **من 5,001 إلى 15,000 جنيه:** تتطلب موافقة مسبقة من المدير المباشر.\n*   **من 15,001 إلى 50,000 جنيه:** تتطلب موافقة مسبقة من رئيس القسم.\n*   **أكثر من 50,000 جنيه:** تتطلب موافقة مسبقة من المدير المالي.\n\n**ملاحظات هامة:**\n*   الموافقة المسبقة تعني الحصول على موافقة كتابية (عبر البريد الإلكتروني أو نظام HRIS) قبل إجراء النفقة، والفواتير الكبيرة التي لا تتضمن موافقة مسبقة لا يتم استرداد قيمتها.\n*   بالنسبة للفعاليات الترفيهية (مثل حضور مباريات أو عروض فنية)، فهي تتطلب موافقة مسبقة من رئيس القسم بغض النظر عن المبلغ.\n\nالمصادر: FIN-009-عشاء-العملاء.docx",
+      "llm_error": false,
+      "expected_output": "الحد الأقصى لعشاء العملاء هو 2,000 جنيه مصري لكل شخص حاضر (يشمل الطعام والمشروبات غير الكحولية والضريبة والإكرامية). الفواتير حتى 5,000 جنيه تكفي موافقة المدير المباشر بعد الفاتورة. الفواتير من 5,001 إلى 15,000 جنيه تتطلب موافقة مسبقة كتابية من المدير المباشر. ما فوق 15,000 جنيه يتطلب موافقة رئيس القسم.",
+      "tools_used": [],
+      "citations": {
+        "expected": [
+          "FIN-009-عشاء-العملاء.docx"
+        ],
+        "returned": [
+          "FIN-007-سياسة-السفر-الدولي.md",
+          "FIN-008-بدل-المواصلات.pdf",
+          "FIN-009-عشاء-العملاء.docx",
+          "FIN-010-vendor-payment-bilingual.md"
+        ],
+        "missing": [],
+        "recall": 1.0,
+        "full_match": true
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 0.875,
+          "passed": true,
+          "reason": "The score is 0.88 because the actual output incorrectly claims that invoices over 50,000 EGP require CFO approval, whereas the context specifies this threshold applies to invoices exceeding 500,000 EGP."
+        },
+        "answer_relevancy": {
+          "score": 0.889,
+          "passed": true,
+          "reason": "The score is 0.89 because the response directly addresses the cost limits and approval requirements, but it includes an unnecessary mention of the source document name which is not relevant to the user's query."
+        },
+        "hallucination": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the actual output is fully supported by the provided context with no contradictions found."
+        },
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all relevant nodes were perfectly ranked at the top, ensuring the user receives the exact cost limits and approval requirements immediately!"
+        },
+        "contextual_recall": {
+          "score": 0.75,
+          "passed": true,
+          "reason": "The score is 0.75 because the first three sentences of the expected output are accurately supported by the 2nd node in the retrieval context, but the final sentence regarding the approval threshold for amounts exceeding 15,000 EGP for client dinners is not explicitly confirmed by the provided nodes."
+        }
+      },
+      "input": "كم الحد الأقصى لتكلفة عشاء العملاء لكل شخص، ومتى أحتاج موافقة مسبقة؟",
+      "actual_output": "الحد الأقصى لتكلفة عشاء العملاء هو **2,000 جنيه مصري لكل شخص** (يشمل الطعام، المشروبات غير الكحولية، الضريبة، والإكرامية).\n\nأما بخصوص **الموافقة المسبقة**، فهي مطلوبة بناءً على إجمالي قيمة الفاتورة كالتالي:\n\n*   **من 5,001 إلى 15,000 جنيه:** تتطلب موافقة مسبقة من المدير المباشر.\n*   **من 15,001 إلى 50,000 جنيه:** تتطلب موافقة مسبقة من رئيس القسم.\n*   **أكثر من 50,000 جنيه:** تتطلب موافقة مسبقة من المدير المالي.\n\n**ملاحظات هامة:**\n*   الموافقة المسبقة تعني الحصول على موافقة كتابية (عبر البريد الإلكتروني أو نظام HRIS) قبل إجراء النفقة، والفواتير الكبيرة التي لا تتضمن موافقة مسبقة لا يتم استرداد قيمتها.\n*   بالنسبة للفعاليات الترفيهية (مثل حضور مباريات أو عروض فنية)، فهي تتطلب موافقة مسبقة من رئيس القسم بغض النظر عن المبلغ.\n\nالمصادر: FIN-009-عشاء-العملاء.docx"
+    },
+    {
+      "id": "EVAL-010",
+      "language": "en",
+      "question": "What is the SLA for getting a new software package installed, and who approves it?",
+      "expected_domain": "it",
+      "predicted_domain": "it",
+      "routing_correct": true,
+      "answer": "The Service Level Agreement (SLA) for new software depends on the cost of the software:\n\n*   **New software, < $500:** 3 to 5 business days.\n*   **New software, $500 – $5,000:** 5 to 10 business days (requires a security review).\n*   **New software, > $5,000:** 10 to 20 business days (requires procurement and legal review).\n\nThe SLA clock begins only after all necessary approvals are received. The approval chain is as follows:\n\n*   **Direct Manager:** Approves the business justification.\n*   **Finance:** Approves the cost and budget code.\n*   **IT Security:** Reviews any software that handles customer data, processes payments, or runs outside the corporate network.",
+      "llm_error": false,
+      "expected_output": "For software already in the pre-approved catalog, installation happens the same business day. For new commercial software under $500, the SLA is 3 to 5 business days. For new software between $500 and $5,000, it is 5 to 10 business days (security review required). Above $5,000 takes 10 to 20 business days (procurement plus legal review). The approval chain involves your direct manager, Finance (for cost and budget), and IT Security if the software handles customer data, processes payments, or runs outside the corporate network.",
+      "tools_used": [],
+      "citations": {
+        "expected": [
+          "IT-004-software-request-process.md",
+          "IT-009-طلب-البرامج.docx"
+        ],
+        "returned": [
+          "IT-001-vpn-setup-guide.md",
+          "IT-003-laptop-provisioning.docx",
+          "IT-004-software-request-process.md",
+          "IT-009-طلب-البرامج.docx"
+        ],
+        "missing": [],
+        "recall": 1.0,
+        "full_match": true
+      },
+      "metrics": {
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the actual output is perfectly aligned with the retrieval context, demonstrating excellent accuracy and faithfulness!"
+        },
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response is perfectly aligned with the input, providing clear and relevant information regarding the SLA and approval process."
+        },
+        "hallucination": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the actual output is fully consistent with all provided context documents, with no contradictions identified."
+        },
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the first node perfectly addresses the SLA and approval process, ensuring the most relevant information is ranked at the top while all subsequent irrelevant nodes are correctly placed lower."
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all sentences in the expected output are perfectly supported by the information provided in node 1 in retrieval context. Great job!"
+        }
+      },
+      "input": "What is the SLA for getting a new software package installed, and who approves it?",
+      "actual_output": "The Service Level Agreement (SLA) for new software depends on the cost of the software:\n\n*   **New software, < $500:** 3 to 5 business days.\n*   **New software, $500 – $5,000:** 5 to 10 business days (requires a security review).\n*   **New software, > $5,000:** 10 to 20 business days (requires procurement and legal review).\n\nThe SLA clock begins only after all necessary approvals are received. The approval chain is as follows:\n\n*   **Direct Manager:** Approves the business justification.\n*   **Finance:** Approves the cost and budget code.\n*   **IT Security:** Reviews any software that handles customer data, processes payments, or runs outside the corporate network."
+    }
+  ]
+}
